@@ -1,0 +1,131 @@
+
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico in the root directory -->
+        <style>
+        /*basic reset*/
+        * {margin: 0; padding: 0;}
+        /*adding a black bg to the body to make things clearer*/
+        body {background: black;}
+        canvas {display: block;}
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <canvas id="c"></canvas>
+
+        <script>
+            var c = document.getElementById("c");
+            var ctx = c.getContext("2d");
+
+            //making the canvas full screen
+            c.height = window.innerHeight;
+            c.width = window.innerWidth;
+
+            //runes - taken from the unicode charset
+            var runes = "ᚠᚢᚦᚫᛃᚲᚼᚴᛇᛝᚻᚺᛀᛞᚨᛉᛗᛟᛩᚹ";
+
+            var M = 'ᛗ';
+            var K = 'ᚲ';
+
+            //converting the string into an array of single characters
+            runes = runes.split("");
+
+            var font_size = 40;
+            var columns = c.width/font_size; //number of columns for the rain
+            var rows = c.height/font_size;
+
+            //an array of drops - one per column
+            var drops = [];
+            //x below is the x coordinate
+            //1 = y co-ordinate of the drop(same for every drop initially)
+            for(var x = 0; x < columns; x++)
+            drops[x] = 1;
+
+            var dropping = [];
+
+            var updateSpeed = 100;
+            var fillTimer = 0;
+            var fillDelay = 3000;
+            var fillPercent = 0;
+            var fillHeight = 0;
+            var fillY = c.height;
+            var fadePercent = (4 / rows).toFixed(2);
+
+            //drawing the characters
+            function draw()
+            {
+                //Black BG for the canvas
+                //translucent BG to show trail
+                ctx.fillStyle = "rgba(0, 0, 0, "+fadePercent+")";
+                ctx.fillRect(0, 0, c.width, c.height);
+
+                ctx.fillStyle = "#ffffff"; //green text
+                ctx.font = font_size + "px arial";
+                //looping over drops
+                var randomDrop = getRandomInt(1, drops.length) - 1;
+
+                if(! dropping[randomDrop]){
+                    dropping[randomDrop] = true;
+                }
+
+                for(var i = 0; i < drops.length; i++)
+                {
+
+
+                    if(! dropping[i]) continue;
+
+                    //a random runes to print
+                    var text = runes[Math.floor(Math.random()*runes.length)];
+                    //x = i*font_size, y = value of drops[i]*font_size
+                    ctx.fillText(text, i*font_size, drops[i]*font_size);
+
+                    //sending the drop back to the top randomly after it has crossed the screen
+                    //adding a randomness to the reset to make the drops scattered on the Y axis
+                    if(drops[i]*font_size > c.height && Math.random() > 0.975)
+                        drops[i] = 0;
+
+                    //incrementing Y coordinate
+                    drops[i]++;
+                }
+
+                //fadePercent += 0.05;
+
+/*
+                ctx.fillStyle = "#FFF";
+                fillHeight = ((c.height * fillPercent) / 100);
+
+                ctx.fillRect(0, fillY - fillHeight, c.width, fillHeight );
+
+                if(fillTimer < fillDelay){
+                    fillTimer += updateSpeed;
+                }else{
+                    if(fillPercent < 100){
+                        fillPercent++;
+                    }
+                }
+*/
+
+            }
+
+            setInterval(draw, updateSpeed);
+
+            function getRandomInt(min, max) {
+            	min = Math.ceil(min);
+            	max = Math.floor(max);
+            	return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<svg data-name="Layer 1" id="statusbar" viewbox="0 0 237.55 38.86" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+        .cls-1{fill:#cececd;}
+        .cls-2{fill:#989898;}
+        .cls-3{fill:#fff;}
+        </style>
+    </defs>
+    <title>statusBar</title>
+    <rect class="cls-1" height="38.86" width="237.55"></rect>
+    <rect class="cls-2" height="20.51" width="179.26" x="46.58" y="8.63"></rect>
+    <polygon class="cls-3" points="190.71 29.14 12.83 29.14 12.83 8.63 201.76 8.63 190.71 29.14" transform="scale(0.5 1)"></polygon>
+</svg>

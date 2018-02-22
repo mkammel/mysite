@@ -1,0 +1,63 @@
+<?php include 'includes/config.php'; ?>
+<!doctype html>
+<html lang="">
+    <head>
+        <?php include 'includes/header.php'; ?>
+
+        <style>
+            #logo #mk {
+                stroke: #ffffff;
+                stroke-width: 3px;
+                stroke-miterlimit: 10;
+            }
+        </style>
+    </head>
+    <body id="mission-page">
+
+        <div class="container">
+            <img src="img/middle.svg" class="middle-knot" />
+            <!--[if lt IE 9]>
+                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+            <div class="row">
+
+                <?php include 'includes/nav.php'; ?>
+
+                <div class="col-md-6 content">
+                    <h1>I have always been <span>two things</span>:<br />an <span>artist</span> and a <span>gamer</span>.</h1>
+
+                    <h2 class="align-right">I'm fascinated with <span class="interaction">interaction</span>, <span class="input">input</span>, and <span class="response">response</span>.</h2>
+
+                    <img src="img/knot2.svg" class="content-knot mobile-hide" />
+
+                    <h3>intuitive design</h3>
+                    <p>Computers have been a part of my life since an early age. This experience allows me to bring an intuitive insight into our day to day interactions with technology. So many wonderful things have been ruined by the clunky way users are forced to interact with them! I love studying current design trends and incorporating them into my own work.</p>
+
+                    <h3 class="align-right">game design</h3>
+                    <p>Video games have come so far in my lifetime. We went from several pixels interacting on a screen to fully immersive Virtual Reality in less than 50 years. In my mind, the combination of narrative, music, visual arts, and interactivity make video games one of the greatest collaborative art forms, and I am itching to make my mark!</p>
+
+                    <?php include 'includes/copyright.php'; ?>
+                </div>
+
+                <?php include 'includes/contact-info.php'; ?>
+
+            </div>
+        </div>
+
+        <script>
+
+            jQuery(document).ready(function($){
+                $('#mission-page span.input').click(function(e){
+                    $('#mission-page span.response').toggleClass('active');
+                })
+            });
+
+            (function() {
+                var myAnimation = new DrawFillSVG({
+                  elementId: "logo"
+                });
+              })();
+        </script>
+        <?php include 'includes/footer.php'; ?>
+    </body>
+</html>
